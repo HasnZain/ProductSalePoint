@@ -1,0 +1,201 @@
+﻿body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/*footer{
+    background: white;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}*/
+
+/* Sidebar Menu arrowSide icon Styles */
+.arrowSide {
+    float: right;
+    margin-right: 5px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-45deg);
+    transition: transform 0.3s ease;
+    margin-top: 8px;
+}
+
+.dropdown:hover .arrowSide {
+    border: solid #7386D5;
+    border-width: 0 2px 2px 0;
+}
+
+.rotate {
+    transform: rotate(45deg);
+}
+
+/* Top Navigation Styles */
+.navbar-header a {
+    color: white;
+    font-size: 24px;
+}
+
+.navbar-right li a {
+    color: white;
+}
+
+    .navbar-right li a:hover {
+        color: #7386D5;
+        background: #fff;
+    }
+
+/* Body Content Styles */
+.bodyContent {
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.bodyContentWebsite {
+    height: 90vh;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    overflow: visible;
+    position: relative;
+    top: 90px;
+}
+
+.topMenu {
+    background: #7386D5;
+    position: fixed;
+    top: 50px;
+    z-index: 5;
+}
+
+/* Login Form Styles */
+.loginSection, .divBtn {
+    display: flex;
+    justify-content: center;
+}
+
+#loginForm {
+    width: 500px;
+}
+
+    #loginForm form {
+        display: flex;
+        flex-direction: column;
+        margin: 50px 0;
+    }
+
+        #loginForm form .btnLogin {
+            width: 70%;
+            cursor: pointer;
+            color: #ffffff;
+            background: #c4161c;
+            border: 1px solid #c4161c;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+            #loginForm form .btnLogin:hover {
+                background: #a11217;
+            }
+
+        #loginForm form .orLogin {
+            color: #252525;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            position: relative;
+            transition: all 0.02s;
+        }
+
+            #loginForm form .orLogin:before {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 2px;
+                width: 100%;
+                background: #9f9f9f;
+                content: "";
+            }
+
+            #loginForm form .orLogin:hover {
+                font-weight: 500;
+            }
+
+        #loginForm form .checkbox {
+            padding-left: 30px;
+        }
+
+
+#categoryForm {
+    margin: 0 0 50px 0 !important;
+}
+
+
+
+.popover-title {
+    padding: 6px 15px !important;
+    font-weight: 700 !important;
+    background-color: #f3f3f3 !important;
+    border-bottom: none !important;
+}
+
+
+
+.row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+@media (min-width: 992px) {
+    .dvContainer {
+        width: 750px;
+    }
+}
+
+
+.successMessage {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    left: 42%;
+}
+
+.loader {
+    display: none;
+    position: fixed;
+    bottom: 50%;
+    left: 50%;
+    border: 5px solid #64c36bbf;
+    border-radius: 50%;
+    border-top: 5px solid #215e1a;
+    width: 40px;
+    height: 40px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

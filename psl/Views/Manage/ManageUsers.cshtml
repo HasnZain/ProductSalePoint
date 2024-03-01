@@ -1,0 +1,105 @@
+﻿@model psl.Models.UserProfiles
+@{
+    ViewBag.Title = "Manage Users";
+    if (User.IsInRole("Admin"))
+    {
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+}
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+<div class="row">
+        <div class="col-md-12 loginSection" style="display: none;">
+            <section id="loginForm">
+                @using (Html.BeginForm("ManageUsers", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <input type="text" name="userID" id="userID" class="form-control hidden" />
+                    <div class="form-group">
+                        <label for="FullName">Full Name</label>
+                        <input type="text" name="FullName" id="FullName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="email" name="Email" id="Email" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="UserName">User Name</label>
+                        <input type="text" name="UserName" id="UserName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="PhoneNumber">Phone Number</label>
+                        <input type="text" name="PhoneNumber" id="PhoneNumber" class="form-control" maxlength="12" />
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 divBtn">
+                            <input type="submit" value="UPDATE" class="btn btn-default btnLogin" />
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-12">
+        <table id="adminTable" class="table dataTable table-hover table-striped">
+            <thead class="bg-success">
+                <tr>
+                    <th>Sr#</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>User Name</th>
+                    <th>Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    if (Model.TamamAdmins.Count > 0)
+                    {
+                        for (var i = 0; i < Model.TamamAdmins.Count; i++)
+                        {
+                            <tr>
+                                <td>@(i+1)</td>
+                                <td>@Model.TamamAdmins[i].FullName</td>
+                                <td>@Model.TamamAdmins[i].Email</td>
+                                <td>@Model.TamamAdmins[i].UserName</td>
+                                <td>@Model.TamamAdmins[i].PhoneNumber</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning" onclick="FillData('@Model.TamamAdmins[i].userID', '@Model.TamamAdmins[i].FullName', '@Model.TamamAdmins[i].Email', '@Model.TamamAdmins[i].UserName', '@Model.TamamAdmins[i].PhoneNumber')">Edit</button>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr><td class="text-center" colspan="6">No admin users found</td></tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        function FillData(userID, fullName, email, userName, phoneNum) {
+            $("#userID").val(userID);
+            $("#FullName").val(fullName);
+            $("#Email").val(email);
+            $("#UserName").val(userName);
+            $("#PhoneNumber").val(phoneNum);
+            $(".loginSection").show();
+        }
+        $(document).ready(function () {
+            $("#adminTable").dataTable();
+        });
+    </script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

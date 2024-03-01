@@ -1,0 +1,124 @@
+﻿.card {
+    color: white;
+    border-radius: 10px;
+}
+    .card .card-header {
+        font-size: 18px;
+        font-weight: 700;
+        padding: 5px 15px;
+    }
+    .card .card-body {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px;
+    }
+    .card .card-body span {
+        padding: 0px 15px;
+        font-size: 36px;
+    }
+
+    .card .card-body svg {
+        padding: 15px;
+        font-size: 40px;
+    }
+
+
+.cardred {
+    border: 1px solid #D04848;
+    background: #eb6969;
+}
+    .cardred .card-header {
+        background: #D04848;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+.cardgreen {
+    border: 1px solid #6aad44;
+    background: #99BC85;
+    border-radius: 10px;
+}
+    .cardgreen .card-header {
+        background: #6aad44;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+.cardblue {
+    border: 1px solid #2a57a1;
+    background: #637A9F;
+    border-radius: 10px;
+}
+    .cardblue .card-header {
+        background: #2a57a1;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+.cardorange {
+    border: 1px solid #f37a00;
+    background: #ffa346;
+    border-radius: 10px;
+}
+    .cardorange .card-header {
+        background: #f37a00;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+
+.tableHead {
+    margin: 0 0 10px 0;
+}
+    .tableHead small {
+        font-size: 12px;
+        font-weight: 700;
+    }
+
+#divCatTable, #divProdTable {
+    max-height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+    #divCatTable::-webkit-scrollbar, #divProdTable::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    /* Scrollbar Styling Category Table  */
+    #divCatTable::-webkit-scrollbar-track {
+        background-color: #ebebeb;
+    }
+
+    #divCatTable::-webkit-scrollbar-thumb {
+        background: #8fbed5;
+    }
+
+
+    /* Scrollbar Styling Product Table */
+    #divProdTable::-webkit-scrollbar-track {
+        background-color: #ebebeb;
+    }
+
+    #divProdTable::-webkit-scrollbar-thumb {
+        background: #f7ad54;
+    }
+
+
+.dvOrderDetails {
+    margin: 0 15px 15px 15px;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+.nav-tabs > li.active > a {
+    font-weight: 700;
+}

@@ -1,0 +1,27 @@
+﻿<!-- TopMenu  -->
+<link href="~/CustomCSS/TopMenu/topMenu.css" rel="stylesheet" />
+
+
+<div class="col-md-10">
+    <ul class="topMenuList">
+        <li class="menuListItem">@Html.ActionLink("Home", "Index", "Home")</li>
+        <li class="menuListItem">@Html.ActionLink("Manage Profile", "Index", "Manage")</li>
+        <li class="menuListItem">@Html.ActionLink("Shop", "Index", "Shop")</li>
+        <li onclick="toggleRotate(this)" class="dropdown">
+            <a href="#UserMngmntSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Cart</a>
+            <ul class="collapse list-unstyled" id="UserMngmntSubmenu">
+                <li>@Html.ActionLink("Cart", "Index", "Cart")</li>
+                <li>@Html.ActionLink("Check Out", "CheckOut", "Cart")</li>
+                <li>@Html.ActionLink("Order Tracking", "OrderTracking", "Order")</li>
+                <li>@Html.ActionLink("Order History", "OrderHistory", "Order")</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="col-md-2 divCart">
+    <a title="Cart" href="/Cart/Index">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span class="badge" id="cartCount">0</span>
+    </a>
+</div>
+

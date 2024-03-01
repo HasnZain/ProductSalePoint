@@ -1,0 +1,137 @@
+﻿@model psl.Models.Products.productModel
+
+@{
+    ViewBag.Title = "Products Management";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/CustomCSS/Products/productPage.css" rel="stylesheet" />
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <button class="btn btn-primary" id="btnAddNew">+ Add new</button>
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <table id="productTable" class="table dataTable table-hover table-striped">
+            <thead class="bg-success">
+                <tr>
+                    <th>Sr#</th>
+                    <th>Product Title</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Images</th>
+                    <th style="text-align: end;">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="productTBody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div id="ProductsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <section>
+                    <form id="productForm" class="form-horizontal" role="form" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="text" name="productID" id="productID" class="form-control hidden" value="0" />
+                        <div class="form-group">
+                            <label for="productTitle">Product Title</label>
+                            <input type="text" name="productTitle" id="productTitle" class="form-control" autocomplete="off" />
+                            <span class="text-danger" id="errTitle" style="display: none;">Product title missing.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="productDesc">Product Description</label>
+                            <textarea name="productDesc" id="productDesc" class="form-control" autocomplete="off"></textarea>
+                            <span class="text-danger" id="errDesc" style="display: none;">Product description missing.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="catID">Category Name</label>
+                            <select class="form-control" id="catID" name="catID">
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Product Price</label>
+                            <input type="number" name="productPrice" id="productPrice" class="form-control" autocomplete="off" min="0" max="10000000" oninput="(this.value > 10000000 || this.value < 0) ? this.value = 0 : this.value = this.value" />
+                            <span class="text-danger" id="errPrice" style="display: none;">Product Price missing.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="productQty">Product Quantity</label>
+                            <input type="number" name="productQty" id="productQty" class="form-control" autocomplete="off" min="0" max="10000000" oninput="(this.value > 10000000 || this.value < 0) ? this.value = 0 : this.value = this.value" />
+                            <span class="text-danger" id="errQty" style="display: none;">Product Quantity missing.</span>
+                        </div>
+                        <div class="form-group dvPrdctPic">
+                            <label for="prdctPic">Product Picture</label>
+                            <input type="file" name="prdctPic" id="prdctPic" class="form-control" multiple accept=".bmp, .jpg, .gif, .png, .tiff, .jpeg, .tif" />
+                            <span class="text-danger" id="errPic" style="display: none;">Product Picture missing.</span>
+                        </div>
+                        <div class="form-group divEditImgGroup">
+                            <label>Product Picture</label>
+                            <button type="button" class="btn btn-xs btn-info pull-right" id="btnAddImages" onclick=""><i class="fa fa-plus"></i> Add Images</button>
+                            <div class="clearfix"></div>
+                            <div id="divEditImgGroup"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="isActive">Status</label>
+                            <select class="form-control" id="isActive" name="isActive">
+                                <option value="1" selected>Active</option>
+                                <option value="0">InActive</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="alert" id="alertBox" role="alert">
+                            </div>
+                            <div class="col-md-12">
+                                <input type="button" value="Add New" class="btn btn-success" id="btnInsert" onclick="InsertProduct()" />
+                                <input type="button" value="Update" class="btn btn-primary" id="btnUpdate" onclick="" />
+                                <input type="button" value="Close" class="btn btn-secondary" id="btnInsert" data-dismiss="modal" />
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal For Images -->
+<div id="AdPicsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 430px !important;">
+        <div class="modal-content" style="box-shadow: 0 0 30px;">
+            <div class="modal-header">
+                <h4 class="modal-title" id="picModalTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="picModalBody">
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/CustomJS/Products/Product.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

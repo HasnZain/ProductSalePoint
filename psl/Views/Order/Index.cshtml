@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Orders Management";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/CustomCSS/Order/Orders.css" rel="stylesheet" />
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<h6 class="text-center">Following are all the orders from users. You can change order status from here.</h6>
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <table id="ordersTable" class="table table-hover table-bordered">
+            <thead class="bg-success">
+                <tr>
+                    <th style="width: 5%;">Order ID</th>
+                    <th style="width: 15%;">Customer Name</th>
+                    <th style="width: 15%;">Order Date</th>
+                    <th style="width: 10%;">Shipping Charges</th>
+                    <th style="width: 10%;">Order Amount</th>
+                    <th style="width: 10%;">Payment Method</th>
+                    <th style="width: 10%;">Order Status</th>
+                    <th style="width: 20%;">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div id="OrderModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width: 800px !important;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+
+            </div>
+            <div class="modal-footer" id="modalFooter">
+                
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <script src="~/CustomJS/Order/Orders.js"></script>
+}

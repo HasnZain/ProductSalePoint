@@ -1,0 +1,124 @@
+﻿@model psl.Models.Categories.categoryModel
+@{
+    ViewBag.Title = "Category Management";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .catsImgs {
+        width: 50px;
+        height: 50px;
+    }
+
+    #catPictureEdit {
+        width: 150px;
+        height: 150px;
+    }
+
+    #deleteModal {
+        position: fixed !important;
+        top: 90px !important;
+        right: 0;
+        bottom: 0;
+        left: 240px !important;
+        z-index: 999999999999 !important;
+    }
+
+    #modalTitle {
+        float: left !important;
+    }
+
+    #modalBody {
+        padding: 15px 30px 30px 30px !important;
+        height: 100px;
+    }
+    .btnDlt{
+        float: right;
+        margin: 5px;
+    }
+
+</style>
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+<div class="row">
+    <div class="col-md-12 loginSection">
+        <section id="loginForm">
+            <form id="categoryForm" class="form-horizontal" role="form" method="post">
+                @Html.AntiForgeryToken()
+                <input type="text" name="catID" id="catID" class="form-control hidden" value="0" />
+                <div class="form-group">
+                    <label for="catTitle">Category Title</label>
+                    <input type="text" name="catTitle" id="catTitle" class="form-control" autocomplete="off" />
+                    <span class="text-danger" id="errTitle" style="display: none;">Category title missing.</span>
+                </div>
+                <div class="form-group dvCatPic">
+                    <label for="catPic">Category Picture</label>
+                    <input type="file" name="catPic" id="catPic" class="form-control" accept=".bmp, .jpg, .gif, .png, .tiff, .jpeg, .tif" />
+                    <span class="text-danger" id="errPic" style="display: none;">Picture missing.</span>
+                </div>
+                <div class="form-group dvCatPicEdit">
+                    <label for="catPic">Category Picture</label><br />
+                    <img src="" id="catPictureEdit" />
+                </div>
+                <div class="form-group">
+                    <label for="isActive">Status</label>
+                    <select class="form-control" id="isActive" name="isActive">
+                        <option value="1" selected>Active</option>
+                        <option value="0">InActive</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="alert" id="alertBox" role="alert">
+                    </div>
+                    <div class="col-md-12 divBtn">
+                        <input type="button" value="Add New" class="btn btn-default btnLogin" id="btnInsert" onclick="InsertCategory()" />
+                        <input type="button" value="Update" class="btn btn-default btnLogin" id="btnUpdate" onclick="" />
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table id="adminTable" class="table dataTable table-hover table-striped">
+            <thead class="bg-success">
+                <tr>
+                    <th>Sr#</th>
+                    <th>Category Title</th>
+                    <th>Status</th>
+                    <th>Images</th>
+                    <th style="text-align: end;">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="catTable">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div id="deleteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle">Warning!</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script src="~/CustomJS/Category/Categories.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

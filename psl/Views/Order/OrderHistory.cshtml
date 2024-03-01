@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "OrderHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/CustomCSS/Order/orderHistory.css" rel="stylesheet" />
+
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="/Home/index"><i class="fa fa-home"></i> Home</a>
+                    <span>Order History</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<!-- Breadcrumb End -->
+
+<h2 class="text-center">Order History</h2>
+<h6 class="text-center">You can check all of your previous orders and their status on this page.</h6>
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover table-bordered">
+                <thead class="bg-success">
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Order Date</th>
+                        <th>Order Amount</th>
+                        <th>Order Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="orderHistoryTable">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/CustomJS/Order/orderHistory.js"></script>
+}

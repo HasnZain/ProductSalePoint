@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Stock Adjustment";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/CustomCSS/Products/productPage.css" rel="stylesheet" />
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+<h5>Following are the products with low stock. Please update these.</h5>
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <table id="productTable" class="table dataTable table-hover table-striped">
+            <thead class="bg-success">
+                <tr>
+                    <th>Sr#</th>
+                    <th>Product Title</th>
+                    <th>Product Description</th>
+                    <th>Category Name</th>
+                    <th>Product Quantity</th>
+                    <th style="text-align: end;">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="productTBody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div id="ProductsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle">Adjust Product Stock</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <section>
+                    <form id="productForm" class="form-horizontal" role="form" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="text" name="productID" id="productID" class="form-control hidden" value="0" />
+                        <div class="form-group">
+                            <label for="productTitle">Product Title</label>
+                            <input type="text" name="productTitle" id="productTitle" class="form-control" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="catName">Category Name</label>
+                            <input type="text" name="catName" id="catName" class="form-control" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="cStock">Current Stock</label>
+                            <input type="text" name="cStock" id="cStock" class="form-control" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label for="productQty">Product Quantity</label>
+                            <input type="number" name="productQty" id="productQty" class="form-control" autocomplete="off" min="0" max="10000000" oninput="(this.value > 10000000 || this.value < 0) ? this.value = 0 : this.value = this.value" />
+                            <span class="text-danger" id="errQty" style="display: none;">Product Quantity missing.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="rmks">Remarks</label>
+                            <input type="text" name="rmks" id="rmks" class="form-control" autocomplete="off" />
+                            <span class="text-danger" id="errRmks" style="display: none;">Remarks missing.</span>
+                        </div>
+                        <div class="form-group">
+                            <div class="alert" id="alertBox" role="alert">
+                            </div>
+                            <div class="col-md-12">
+                                <input type="button" value="Update" class="btn btn-primary" id="btnUpdate" onclick="" />
+                                <input type="button" value="Close" class="btn btn-secondary" id="btnInsert" data-dismiss="modal" />
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/CustomJS/Products/StockAdjustment.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+}

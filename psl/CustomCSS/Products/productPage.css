@@ -1,0 +1,105 @@
+﻿
+
+.PdescHide{
+    display: none;
+}
+#ProductsModal {
+    position: fixed !important;
+    top: 90px !important;
+    right: 0;
+    bottom: 0;
+    left: 240px !important;
+    z-index: 0 !important;
+}
+#modalTitle{
+    float: left !important;
+}
+#modalBody{
+    padding: 30px !important;
+}
+
+#AdPicsModal {
+    position: fixed !important;
+    top: 90px !important;
+    right: 0;
+    bottom: 0;
+    left: 240px !important;
+    z-index: 0 !important;
+}
+#picModalTitle {
+    float: left !important;
+}
+
+#picModalBody {
+    padding: 30px !important;
+    height: 150px;
+}
+#btnYesDel, #btnNoDel {
+    margin: 5px;
+}
+
+#productForm #btnInsert {
+    margin-top: 10px;
+    margin-left: 10px;
+    float: right;
+    cursor: pointer;
+}
+#productForm #btnUpdate {
+    margin-top: 10px;
+    margin-left: 10px;
+    float: right;
+    cursor: pointer;
+}
+
+#btnAddNew{
+    float: right;
+    margin-right: 15px;
+}
+
+#productTable{
+    margin-top: 15px;
+}
+
+.prdctsImgs {
+    width: 50px;
+    height: 50px;
+}
+
+#prdctPictureEdit {
+    width: 150px;
+    height: 150px;
+}
+
+#divEditImgGroup{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.parentDiv {
+    position: relative;
+    width: 115px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.btnRemove {
+    position: absolute;
+    right: 8px;
+    top: -8px;
+    background: white;
+    border: 1px solid crimson;
+    color: crimson;
+    border-radius: 50px;
+    font-size: 11px;
+}
+
+    .btnRemove:hover {
+        background: crimson;
+        color: white;
+    }
+
+.previewImg {
+    width: 100px;
+    height: 100px;
+}

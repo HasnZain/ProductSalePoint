@@ -1,0 +1,84 @@
+﻿
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    position: fixed;
+    top: 50px;
+}
+
+#sidebar {
+    background: #7386D5;
+    color: #fff;
+    transition: all 0.3s;
+    height: 100vh;
+}
+
+    #sidebar.active {
+        margin-left: -250px;
+    }
+
+    #sidebar ul.components {
+        padding: 10px 0 20px 0;
+        background: #6d7fcc;
+    }
+
+    #sidebar .sidebar-header {
+        padding: 15px 10px;
+        background: #6d7fcc;
+        border-bottom: 1px solid #3b4b91;
+    }
+
+    #sidebar ul li a {
+        padding: 10px;
+        font-size: 1.1em;
+        display: block;
+        color: white;
+        text-decoration: none;
+    }
+
+        #sidebar ul li a:hover {
+            color: #7386D5;
+            background: #fff;
+        }
+
+    #sidebar ul li.active > a,
+    a[aria-expanded="true"] {
+        color: #fff;
+        background: #48527e;
+    }
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+
+        #sidebar.active {
+            margin-left: 0;
+        }
+}

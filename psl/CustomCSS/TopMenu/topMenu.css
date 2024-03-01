@@ -1,0 +1,103 @@
+﻿
+
+
+.topMenuList {
+    list-style: none;
+    margin: 10px;
+    display: flex;
+}
+.menuListItem{
+    margin-right: 5px;
+}
+    .menuListItem a{
+        padding: 10px 15px;
+        color: white;
+        text-decoration: none;
+    }
+    .menuListItem a:hover {
+        color: #7386D5;
+        background: #fff;
+    }
+
+
+
+    .divCart {
+        display: flex;
+        justify-content: flex-end;
+        position: fixed;
+        top: 52px;
+        right: 0;
+        padding-top: 10px;
+    }
+
+    .divCart a {
+        margin-right: 50px;
+        position: relative;
+        cursor: pointer;
+    }
+
+        .divCart a svg {
+            font-size: 18px;
+            color: white;
+        }
+        .divCart a span {
+            position: absolute !important;
+            top: -10px !important;
+            left: 15px !important;
+            background: #d9534f !important;
+            color: #fff !important;
+        }
+
+
+
+
+
+/* Basic styles for the dropdown menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+}
+
+    .dropdown-toggle:hover {
+        background-color: #e9e9e9;
+        text-decoration: none;
+    }
+
+.dropdown ul {
+    position: absolute;
+    top: 28px;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    list-style: none;
+    background-color: #fff;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    width: 150px;
+}
+
+    .dropdown ul li {
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+        .dropdown ul li a {
+            text-decoration: none;
+        }
+
+        .dropdown ul li:hover {
+            background-color: #f0f0f0;
+        }
+
+/* Show the submenu when hovering over the dropdown */
+.dropdown:hover ul {
+    display: block;
+}

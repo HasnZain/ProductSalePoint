@@ -1,0 +1,152 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+<link href="~/CustomCSS/Home/Home.css" rel="stylesheet" />
+
+<!-- Categories Section Begin -->
+<section class="category">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 dvMain">
+                <div class="col-md-6 dvImg1">
+                    <h2 class="text-center">Laptop</h2>
+                </div>
+                <div class="col-md-3 dvImg2">
+                    <h2 class="text-center">Camera</h2>
+                </div>
+                <div class="col-md-3 dvImg3">
+                    <h2 class="text-center">Mobile<br />Accessories</h2>
+                </div>
+            </div>
+            <div class="col-md-12 dvMain2">
+                <div class="col-md-12 dvImg4">
+                    <h2 class="text-center">Laptop Accessories</h2>
+                </div>
+            </div>
+            <div class="col-md-12 dvMain3">
+                <div class="col-md-12 dvImg5">
+                    <h2 class="text-center">Mobile</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="dvContainer">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="section-title">
+                    <h4>New product</h4>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9">
+                <ul class="filter__controls">
+                    <li class="active" data-filter="*">All</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row property__gallery">
+            @*<div class="col-lg-3 col-md-4 col-sm-6 mix women men kid accessories cosmetic">
+                    <div class="product__item sale">
+                        <div class="product__item__pic set-bg" data-setbg="img/product/product-6.jpg">
+                            <div class="label sale">Sale</div>
+                            <ul class="product__hover">
+                                <li><a href="#"><i class="fa-solid fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa-solid fa-cart-arrow-down"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Tropical Kimono</a></h6>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                            <div class="product__price">$ 49.0 <span>$ 59.0</span></div>
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+    </div>
+</section>
+
+<!-- Services Section Begin -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 dvSeeMore">
+                <a href="/Shop/Index">See More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr />
+
+<!-- Services Section Begin -->
+<section class="services spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <h6>Free Shipping</h6>
+                    <p>For all order over PKR 5000</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa-solid fa-money-bill-transfer"></i>
+                    <h6>Money Back Guarantee</h6>
+                    <p>If good have problems</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa-solid fa-comments"></i>
+                    <h6>Online Support 24/7</h6>
+                    <p>Dedicated support</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="services__item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h6>Payment Secure</h6>
+                    <p>100% secure payment</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Modal -->
+<div id="ShopProductModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width: 1200px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle" style="float: left;">Product Details</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="detailsModalBody">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="loader"></div>
+<div class="successMessage">
+    <div class="alert alert-success" role="alert"><strong>Successfully Added To Cart</strong></div>
+</div>
+
+@section Scripts {
+    <script src="~/CustomJS/Home/Home.js"></script>
+}
+
+

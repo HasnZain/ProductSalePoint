@@ -1,0 +1,21 @@
+﻿
+#OrderModal {
+    position: fixed !important;
+    top: 90px !important;
+    right: 0;
+    bottom: 0;
+    left: 240px !important;
+    z-index: 999999999999 !important;
+}
+
+#modalTitle {
+    float: left !important;
+}
+
+#modalFooter{
+    border-top: none;
+}
+
+#alertBox {
+    display: none;
+}

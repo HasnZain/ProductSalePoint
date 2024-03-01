@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/CustomCSS/Shop/Shop.css" rel="stylesheet" />
+
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="/Home/index"><i class="fa fa-home"></i> Home</a>
+                    <span>Shop</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<!-- Breadcrumb End -->
+<!-- Shop Section Begin -->
+<section class="shop spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="shop__sidebar">
+                    <div class="sidebar__categories">
+                        <div class="section-title">
+                            <h4>Categories</h4>
+                        </div>
+                        <div class="categories__accordion">
+                            <ul class="filter__controls">
+                                <li><a class="active filterLIS" data-filter="0">All</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sidebar__filter">
+                        <div class="section-title">
+                            <h4>Shop by price</h4>
+                        </div>
+                        <div class="price-input">
+                            <div class="field">
+                                <span>Min</span>
+                                <input type="number" class="input-min" value="500" min="500" />
+                            </div>
+                            <div class="seperator">-</div>
+                            <div class="field">
+                                <span>Max</span>
+                                <input type="number" class="input-max" value="" />
+                            </div>
+                        </div>
+                        <div class="slider">
+                            <div class="progress"></div>
+                        </div>
+                        <div class="range-input">
+                            <input type="range" class="range-min" min="500" max="" value="500" steps="1000" />
+                            <input type="range" class="range-max" min="500" max="" value="" steps="1000" />
+                        </div>
+                        <div class="dvBtnFilter">
+                            <button type="button" class="btn btn-danger pull-right" id="btnFilter"><i class="fa-solid fa-filter"></i> Filter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9">
+                <div class="row product_Gallery">
+                    <div class="col-lg-12 property__gallery">
+                    </div>
+                    <div class="col-lg-12 text-center">
+                        <div class="pagination">
+                            <button class="pagination-btn btn btn-primary" data-direction="prev">Previous</button>
+                            <div class="page-numbers"></div>
+                            <button class="pagination-btn btn btn-primary" data-direction="next">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shop Section End -->
+<!-- Modal -->
+<div id="ShopProductModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width: 1200px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="modalTitle" style="float: left;">Product Details</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" id="detailsModalBody">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="loader"></div>
+<div class="successMessage">
+    <div class="alert alert-success" role="alert"><strong>Successfully Added To Cart</strong></div>
+</div>
+
+
+@*<div class="row">
+        <div class="col-md-12 d-flex">
+            <div class="col-md-6">
+                <div class="col-md-12 p-0 d-flex justify-content-center">
+                    <img src="" id="detailActiveImg" />
+                </div>
+                <div class="col-md-12 divDetailsImg" id="divDetailsImg">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="product__details__text">
+                    <h3>Essential structured blazer <span>Brand: SKMEIMore Men Watches from SKMEI</span></h3>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>( 138 reviews )</span>
+                    </div>
+                    <div class="product__details__price">$ 75.0 <span>$ 83.0</span></div>
+                    <p>
+                        Nemo enim ipsam voluptatem quia aspernatur aut odit aut loret fugit, sed quia consequuntur
+                        magni lores eos qui ratione voluptatem sequi nesciunt.
+                    </p>
+                    <div class="product__details__button">
+                        <div class="quantity">
+                            <span>Quantity:</span>
+                            <div class="pro-qty">
+                                <input type="text" value="1">
+                            </div>
+                        </div>
+                        <a href="#" class="cart-btn"><span class="icon_bag_alt"></span> Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
+
+
+
+
+@section Scripts {
+    <script src="~/CustomJS/Shop/Shop.js"></script>
+}

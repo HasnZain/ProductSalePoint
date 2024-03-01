@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewBag.Title = "Admin Dashboard";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/CustomCSS/AdminDashboard/adminDashboard.css" rel="stylesheet" />
+
+<h2>@ViewBag.Title</h2>
+<hr />
+
+<div class="loading">
+    <img src="~/Content/loading.gif" />
+</div>
+<section id="dashboardSection" style="display: none;">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card cardred">
+                <div class="card-header">
+                    Total Admins
+                </div>
+                <div class="card-body">
+                    <span class="card-title" id="noOfAdmins"></span>
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card cardgreen">
+                <div class="card-header">
+                    Total Users
+                </div>
+                <div class="card-body">
+                    <span class="card-title" id="noOfUsers"></span>
+                    <i class="fa-solid fa-users"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card cardblue">
+                <div class="card-header">
+                    Total Categories
+                </div>
+                <div class="card-body">
+                    <span class="card-title" id="noOfCategories"></span>
+                    <i class="fa-solid fa-clipboard-list"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card cardorange">
+                <div class="card-header">
+                    Total Products
+                </div>
+                <div class="card-body">
+                    <span class="card-title" id="noOfProducts"></span>
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-8">
+            <h4 class="tableHead">Product List <small> (The Product with red background has Low Stock.)</small></h4>
+            <div id="divProdTable">
+                <table id="productTable" class="table dataTable table-hover table-striped">
+                    <thead style="background: #FFCF96;">
+                        <tr>
+                            <th style="width: 5%;">Sr#</th>
+                            <th style="width: 30%;">Product Title</th>
+                            <th style="width: 30%;">Category Name</th>
+                            <th style="width: 15%;">Product Price</th>
+                            <th style="width: 10%;">Product Quantity</th>
+                            <th style="width: 10%;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productTBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h4 class="tableHead">Category List</h4>
+            <div id="divCatTable">
+                <table class="table dataTable table-hover table-striped">
+                    <thead class="bg-info">
+                        <tr>
+                            <th>Sr#</th>
+                            <th>Category Title</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="catTable">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-12 dvOrderDetails">
+            <div class="dvOrderHead">
+                <h4 class="text-center">Customer Orders</h4>
+            </div>
+            <div class="col-md-12" style="margin-bottom: 15px;">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item active">
+                        <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Placed</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">In Progress</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Dispatched</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">Delivered</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                    <table id="ordersPlacedTable" style="background: white;" class="table table-condensed table-striped table-bordered">
+                        <thead class="bg-info">
+                            <tr>
+                                <th style="width: 5%;">Sr #</th>
+                                <th style="width: 15%;">Customer Name</th>
+                                <th style="width: 15%;">Order Date</th>
+                                <th style="width: 10%;">Shipping Charges</th>
+                                <th style="width: 10%;">Order Amount</th>
+                                <th style="width: 10%;">Payment Method</th>
+                                <th style="width: 10%;">Order Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersPlacedTBody"></tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="tabs-2" role="tabpanel">
+                    <table id="ordersInProgressTable" class="table table-condensed table-striped table-bordered">
+                        <thead class="bg-warning">
+                            <tr>
+                                <th style="width: 5%;">Sr #</th>
+                                <th style="width: 15%;">Customer Name</th>
+                                <th style="width: 15%;">Order Date</th>
+                                <th style="width: 10%;">Shipping Charges</th>
+                                <th style="width: 10%;">Order Amount</th>
+                                <th style="width: 10%;">Payment Method</th>
+                                <th style="width: 10%;">Order Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersInProgressTBody"></tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="tabs-3" role="tabpanel">
+                    <table id="ordersDispatchedTable" class="table table-condensed table-striped table-bordered">
+                        <thead>
+                            <tr class="bg-success">
+                                <th style="width: 5%;">Sr #</th>
+                                <th style="width: 15%;">Customer Name</th>
+                                <th style="width: 15%;">Order Date</th>
+                                <th style="width: 10%;">Shipping Charges</th>
+                                <th style="width: 10%;">Order Amount</th>
+                                <th style="width: 10%;">Payment Method</th>
+                                <th style="width: 10%;">Order Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersDispatchedTBody"></tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="tabs-4" role="tabpanel">
+                    <table id="ordersDeliveredTable" class="table table-condensed table-striped table-bordered">
+                        <thead>
+                            <tr class="bg-danger">
+                                <th style="width: 5%;">Sr #</th>
+                                <th style="width: 15%;">Customer Name</th>
+                                <th style="width: 15%;">Order Date</th>
+                                <th style="width: 10%;">Shipping Charges</th>
+                                <th style="width: 10%;">Order Amount</th>
+                                <th style="width: 10%;">Payment Method</th>
+                                <th style="width: 10%;">Order Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersDeliveredTBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <script src="~/CustomJS/Admin_Dashboard/AdminDashboard.js"></script>
+}
