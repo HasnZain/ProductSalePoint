@@ -15,7 +15,7 @@ namespace psl.ControllersApi
 {
     public class OrderApiController : ApiController
     {
-        // POST: INSERT Order
+        // POST: INSERT Orders
         [HttpPost]
         public Response InsertOrder()
         {
@@ -112,5 +112,6 @@ namespace psl.ControllersApi
             string orderStatus = Convert.ToString(HttpContext.Current.Request.Form["OrderStatus"]);
             return repository.UpdateOrderStatus(orderID, orderStatus);
         }
+
     }
 }

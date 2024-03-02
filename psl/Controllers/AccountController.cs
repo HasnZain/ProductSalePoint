@@ -19,6 +19,7 @@ namespace psl.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private RoleManager<IdentityRole> _roleManager;
+        ApplicationDbContext context = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -82,8 +83,12 @@ namespace psl.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    var user = UserManager.FindByName(model.UserName);
-                    if (user.Roles.FirstOrDefault().RoleId == "dd0a7dad-d98c-4ed3-80f8-293c9f92105e")
+                    
+                    _roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+                    var roleChk = _roleManager.FindByName("Admin");
+                    var user = UserManager.FindByName(model.UserName).Roles.FirstOrDefault(x => x.RoleId == roleChk.Id);
+
+                    if (user != null)
                     {
                         returnUrl = "/Admin/Index";
                     }
@@ -167,14 +172,7 @@ namespace psl.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    if (model.RoleID == "dd0a7dad-d98c-4ed3-80f8-293c9f92105e")
-                    {
-                        await UserManager.AddToRoleAsync(user.Id, "Admin");
-                    }
-                    else
-                    {
-                        await UserManager.AddToRoleAsync(user.Id, "User");
-                    }
+                    await UserManager.AddToRoleAsync(user.Id, "User");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

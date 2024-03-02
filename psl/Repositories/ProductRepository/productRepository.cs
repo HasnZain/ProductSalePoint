@@ -19,7 +19,6 @@ namespace psl.Repositories.ProductRepository
             Results = new Response();
         }
 
-
         #region Insert & Update Products
 
         [HttpPost]
@@ -115,7 +114,6 @@ namespace psl.Repositories.ProductRepository
 
         #endregion
 
-
         #region Get All Products For Admin
 
         [HttpPost]
@@ -163,7 +161,6 @@ namespace psl.Repositories.ProductRepository
         }
 
         #endregion
-
 
         #region Get All Products
 
@@ -218,7 +215,6 @@ namespace psl.Repositories.ProductRepository
 
         #endregion
 
-
         #region Get Product By ID
 
         [HttpPost]
@@ -268,7 +264,6 @@ namespace psl.Repositories.ProductRepository
 
         #endregion
 
-
         #region Get Products Pictures
         public DataTable GetProdPictures(int prodID)
         {
@@ -292,7 +287,6 @@ namespace psl.Repositories.ProductRepository
             return table;
         }
         #endregion
-
 
         #region Delete Product Picture
         public Response DeleteProdPicture(int pictureID)
@@ -412,7 +406,6 @@ namespace psl.Repositories.ProductRepository
 
         #endregion
 
-
         #region Adjust Stock Against Product
 
         [HttpPost]
@@ -445,7 +438,6 @@ namespace psl.Repositories.ProductRepository
         }
 
         #endregion
-
 
         #region Insert Products Images
 
@@ -510,5 +502,6 @@ namespace psl.Repositories.ProductRepository
         }
 
         #endregion
+
     }
 }

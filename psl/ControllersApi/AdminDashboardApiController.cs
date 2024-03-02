@@ -21,7 +21,7 @@ namespace psl.ControllersApi
             return table;
         }
 
-        // GET: GET ALL Order with status Placed
+        // GET: GET ALL Orders with status Placed
         [HttpGet]
         public DataTable getOrdersPlaced()
         {
@@ -31,7 +31,7 @@ namespace psl.ControllersApi
             return table;
         }
 
-        // GET: GET ALL Order with status In Progress
+        // GET: GET ALL Orders with status In Progress
         [HttpGet]
         public DataTable getOrdersInProgress()
         {
@@ -41,7 +41,7 @@ namespace psl.ControllersApi
             return table;
         }
 
-        // GET: GET ALL Order with status Dispatched
+        // GET: GET ALL Orders with status Dispatched
         [HttpGet]
         public DataTable getOrdersDispatched()
         {
@@ -51,7 +51,7 @@ namespace psl.ControllersApi
             return table;
         }
 
-        // GET: GET ALL Order with status Delivered
+        // GET: GET ALL Orders with status Delivered
         [HttpGet]
         public DataTable getOrdersDelivered()
         {

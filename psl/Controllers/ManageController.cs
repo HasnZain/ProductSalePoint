@@ -257,15 +257,7 @@ namespace psl.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    if (model.RoleID == "dd0a7dad-d98c-4ed3-80f8-293c9f92105e")
-                    {
-                        await UserManager.AddToRoleAsync(user.Id, "Admin");
-                    }
-                    else
-                    {
-                        await UserManager.AddToRoleAsync(user.Id, "User");
-                    }
-
+                    await UserManager.AddToRoleAsync(user.Id, "Admin");
                     return RedirectToAction("ManageUsers", "Manage");
                 }
                 AddErrors(result);

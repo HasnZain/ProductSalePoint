@@ -62,5 +62,6 @@ namespace psl.ControllersApi
             categoryRepository repository = new categoryRepository();
             return repository.DeleteCategory(catID);
         }
+
     }
 }

@@ -114,7 +114,8 @@ const getAllProducts = (catID, priceFrom, priceTo) => {
                             str = `
                                 <div class="col-lg-4 col-md-4 col-sm-6 mix ${catName}">
                                     <div class="product__item">
-                                        <div class="product__item__pic set-bg" style="background-image: url(${value.Pictures[0].PictureURL})"></div>
+                                        <div class="product__item__pic set-bg" style="background-image: url(${value.Pictures[0].PictureURL})">
+                                        </div>
                                         ${soldOut}
                                         <div class="product__item__text">
                                             <h6><a onclick="showDetails(${value.ProductID})">${value.ProductName}</a></h6>
@@ -283,6 +284,11 @@ const getProductDetails = (prodID) => {
             .then(result => {
                 let data = JSON.parse(result);
 
+                let soldOut = ``;
+                if (data.Qty <= 0) {
+                    soldOut = `<div class="label stockout" id="labelStockOut" >out of stock</div>`;
+                }
+
                 let str = `<div class="row">
                                 <div class="col-md-12">
                                     <div class="col-md-6">
@@ -293,6 +299,7 @@ const getProductDetails = (prodID) => {
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
+                                        ${soldOut}
                                         <div class="product__details__text">
                                             <h3>${data.ProductName} <span>Category: ${data.catTitle}</span></h3>
                                             <div class="rating">

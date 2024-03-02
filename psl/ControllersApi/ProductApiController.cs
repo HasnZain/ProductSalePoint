@@ -16,7 +16,7 @@ namespace psl.ControllersApi
 {
     public class ProductApiController : ApiController
     {
-        // POST: INSERT and UPDATE Product
+        // POST: INSERT and UPDATE Products
         [HttpPost]
         public Response InsertUpdateProduct()
         {
