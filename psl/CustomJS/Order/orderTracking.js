@@ -48,8 +48,8 @@ const getOrdersByID = (orderID) => {
         .then(response => response.text())
         .then(result => {
             let data = JSON.parse(result);
-            console.log(data);
-            if (data.length == 0) {
+
+            if (data.FullName == null) {
                 $(".errText").show();
                 $(".errText").html("You are not the authorized person for this order id.");
                 window.setTimeout(function () {
@@ -58,18 +58,18 @@ const getOrdersByID = (orderID) => {
                 return false;
             }
 
-            $("#fullName").val(data[0].FullName);
-            $("#email").val(data[0].Email);
-            $("#phoneNo").val(data[0].PhoneNo);
-            $("#country").val(data[0].Country);
-            $("#city").val(data[0].City);
-            $("#zipCode").val(data[0].ZipCode);
-            $("#address").val(data[0].Address);
-            $("#orderDateTime").val(data[0].InsertedDatetime);
-            $("#orderStatus").val(data[0].Ord_Status);
-            $("#totalAmt").val(data[0].Ord_Total);
-            $("#paymentMethod").val(data[0].Payment_Method);
-            $("#shipping").val(data[0].Shipping_Charges);
+            $("#fullName").val(data.FullName);
+            $("#email").val(data.Email);
+            $("#phoneNo").val(data.PhoneNo);
+            $("#country").val(data.Country);
+            $("#city").val(data.City);
+            $("#zipCode").val(data.ZipCode);
+            $("#address").val(data.Address);
+            $("#orderDateTime").val(data.returningDate);
+            $("#orderStatus").val(data.Status);
+            $("#totalAmt").val(data.GrandTotal);
+            $("#paymentMethod").val(data.Method);
+            $("#shipping").val(data.ShippingCharges);
 
             $(".loader").show();
             window.setTimeout(function () {
@@ -94,19 +94,18 @@ const getOrderItemsDtl = (orderID) => {
         .then(response => response.text())
         .then(result => {
             let data = JSON.parse(result);
-            console.log(data);
 
             let str = ``, footStr = ``, subTotal = 0;
             $.each(data, function (i, item) {
-                subTotal += item.ItemTotal;
+                subTotal += item.itemTotal;
                 str += `<tr>
                             <td>${(i + 1)}</td>
-                            <td class="ProdName">${item.ProductTitle}</td>
-                            <td class="ProdDesc">${item.ProdDescription}</td>
-                            <td>${item.CatTitle}</td>
-                            <td>${item.ItemPrice}</td>
-                            <td>${item.ItemQty}</td>
-                            <td>${formatPrice(item.ItemTotal)}</td>
+                            <td class="ProdName">${item.productTitle}</td>
+                            <td class="ProdDesc">${item.productDesc}</td>
+                            <td>${item.categoryTitle}</td>
+                            <td>${item.productPrice}</td>
+                            <td>${item.Quantity}</td>
+                            <td>${formatPrice(item.itemTotal)}</td>
                         </tr>`;
             });
             $("#itemDetailTBody").html(str);
@@ -146,7 +145,7 @@ function truncateText(element, maxLength, title) {
 
             // Add "See more" link and popover with unique identifiers
             var uniqueId = 'popover_' + Math.floor(Math.random() * 100000);
-            $(this).append('<a class="seeMoreText" href="#" data-toggle="popover" data-content="' + text + '" data-title="' + textTitle + '" data-unique-id="' + uniqueId + '">See more</a>');
+            $(this).append('<a class="seeMoreText" data-toggle="popover" data-content="' + text + '" data-title="' + textTitle + '" data-unique-id="' + uniqueId + '">See more</a>');
 
             // Initialize popover for this specific "See more" link
             $('[data-unique-id="' + uniqueId + '"]').popover({

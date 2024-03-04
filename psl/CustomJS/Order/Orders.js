@@ -19,35 +19,36 @@ const getAllOrders = () => {
             let str = ``;
             $.each(data, function (i, item) {
                 let colorGrp = "";
-                if (item.Ord_Status == "In Process") {
+                if (item.Status == "In Process") {
                     colorGrp = "bg-info";
                 }
-                else if (item.Ord_Status == "Dispatched") {
+                else if (item.Status == "Dispatched") {
                     colorGrp = "bg-warning";
                 }
-                else if (item.Ord_Status == "Delivered") {
+                else if (item.Status == "Delivered") {
                     colorGrp = "bg-success";
                 }
                 str += `<tr>
-                            <td>${item.OrderID}</td>
+                            <td>${item.Ord_ID}</td>
                             <td>${item.FullName}</td>
-                            <td id="date_${item.OrderID}">${item.InsertedDatetime}</td>
-                            <td>PKR ${item.Shipping_Charges}</td>
-                            <td id="amt_${item.OrderID}" amt="${item.Ord_Total}">PKR ${formatPrice(item.Ord_Total)}</td>
-                            <td>${item.Payment_Method}</td>
-                            <td class="${colorGrp}" id="status_${item.OrderID}">${item.Ord_Status}</td>
+                            <td id="date_${item.Ord_ID}">${item.returningDate}</td>
+                            <td>PKR ${item.ShippingCharges}</td>
+                            <td id="amt_${item.Ord_ID}" amt="${item.GrandTotal}">PKR ${formatPrice(item.GrandTotal)}</td>
+                            <td>${item.Method}</td>
+                            <td class="${colorGrp}" id="status_${item.Ord_ID}">${item.Status}</td>
                             <td>
-                                <button class="btn btn-sm btn-primary" onclick="showDetails(${item.OrderID})"><i class="fa-solid fa-eye"></i> Details</button>
-                                <button class="btn btn-sm btn-warning" onclick="updateDetails(${item.OrderID})"><i class="fa-solid fa-pen-to-square"></i> Change Status</button>
+                                <button class="btn btn-sm btn-primary" onclick="showDetails(${item.Ord_ID})"><i class="fa-solid fa-eye"></i> Details</button>
+                                <button class="btn btn-sm btn-warning" onclick="updateDetails(${item.Ord_ID})"><i class="fa-solid fa-pen-to-square"></i> Change Status</button>
                             </td>
                         </tr>`;
             });
             $("#ordersTableBody").html(str);
-            $("#ordersTable").dataTable();
+            $("#ordersTable").dataTable({
+                order: [[3, 'desc']]
+            });
 
         })
         .catch(error => console.log('error', error));
-
 }
 
 function showDetails(orderID) {
@@ -123,26 +124,25 @@ const getOrdersByID = (orderID) => {
         .then(response => response.text())
         .then(result => {
             let data = JSON.parse(result);
-            console.log(data);
 
             let str = `<div class="col-md-12">
                     <h4>Customer Information</h4>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Full Name</label>
-                            <input type="text" value="${data[0].FullName}" class="form-control" readonly />
+                            <input type="text" value="${data.FullName}" class="form-control" readonly />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="text" value="${data[0].Email}" class="form-control" readonly />
+                            <input type="text" value="${data.Email}" class="form-control" readonly />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Phone Number</label>
-                            <input type="text" value="${data[0].PhoneNo}" class="form-control" readonly />
+                            <input type="text" value="${data.PhoneNo}" class="form-control" readonly />
                         </div>
                     </div>
                 </div>
@@ -151,25 +151,25 @@ const getOrdersByID = (orderID) => {
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Country</label>
-                            <input type="text" value="${data[0].Country}" class="form-control" readonly />
+                            <input type="text" value="${data.Country}" class="form-control" readonly />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>City</label>
-                            <input type="text" value="${data[0].City}" class="form-control" readonly />
+                            <input type="text" value="${data.City}" class="form-control" readonly />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Zip Code</label>
-                            <input type="text" value="${data[0].ZipCode}" class="form-control" readonly />
+                            <input type="text" value="${data.ZipCode}" class="form-control" readonly />
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Address</label>
-                            <input type="text" value="${data[0].Address}" class="form-control" readonly />
+                            <input type="text" value="${data.Address}" class="form-control" readonly />
                         </div>
                     </div>
                 </div>
@@ -178,31 +178,31 @@ const getOrdersByID = (orderID) => {
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Order DateTime</label>
-                            <input type="text" value="${data[0].InsertedDatetime}" class="form-control" readonly />
+                            <input type="text" value="${data.returningDate}" class="form-control" readonly />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Order Status</label>
-                            <input type="text" value="${data[0].Ord_Status}" class="form-control" readonly />
+                            <input type="text" value="${data.Status}" class="form-control" readonly />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Order Amount</label>
-                            <input type="text" id="totalAmt" value="${data[0].Ord_Total}" class="form-control" readonly />
+                            <input type="text" id="totalAmt" value="${data.GrandTotal}" class="form-control" readonly />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Payment Method</label>
-                            <input type="text" value="${data[0].Payment_Method}" class="form-control" readonly />
+                            <input type="text" value="${data.Method}" class="form-control" readonly />
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Shipping Charges</label>
-                            <input type="text" id="shipping" value="${data[0].Shipping_Charges}" class="form-control" readonly />
+                            <input type="text" id="shipping" value="${data.ShippingCharges}" class="form-control" readonly />
                         </div>
                     </div>
                 </div>
@@ -251,19 +251,18 @@ const getOrderItemsDtl = (orderID) => {
         .then(response => response.text())
         .then(result => {
             let data = JSON.parse(result);
-            console.log(data);
 
             let str = ``, footStr = ``, subTotal = 0; 
             $.each(data, function (i, item) {
-                subTotal += item.ItemTotal;
+                subTotal += item.itemTotal;
                 str += `<tr>
                             <td>${(i + 1)}</td>
-                            <td class="ProdName">${item.ProductTitle}</td>
-                            <td class="ProdDesc">${item.ProdDescription}</td>
-                            <td>${item.CatTitle}</td>
-                            <td>${item.ItemPrice}</td>
-                            <td>${item.ItemQty}</td>
-                            <td>${formatPrice(item.ItemTotal)}</td>
+                            <td class="ProdName">${item.productTitle}</td>
+                            <td class="ProdDesc">${item.productDesc}</td>
+                            <td>${item.categoryTitle}</td>
+                            <td>${item.productPrice}</td>
+                            <td>${item.Quantity}</td>
+                            <td>${formatPrice(item.itemTotal)}</td>
                         </tr>`;
             });
             $("#itemDetailTBody").html(str);

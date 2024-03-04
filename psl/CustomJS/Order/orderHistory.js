@@ -24,21 +24,21 @@ const getAllOrders = () => {
             else {
                 $.each(data, function (i, item) {
                     let colorGrp = "";
-                    if (item.Ord_Status == "In Process") {
+                    if (item.Status == "In Process") {
                         colorGrp = "bg-info";
                     }
-                    else if (item.Ord_Status == "Dispatched") {
+                    else if (item.Status == "Dispatched") {
                         colorGrp = "bg-warning";
                     }
-                    else if (item.Ord_Status == "Delivered") {
+                    else if (item.Status == "Delivered") {
                         colorGrp = "bg-success";
                     }
                     str += `<tr>
-                            <td>${item.OrderID}</td>
-                            <td>${item.InsertedDatetime}</td>
-                            <td>${formatPrice(item.Ord_Total)}</td>
-                            <td class="${colorGrp}">${item.Ord_Status}</td>
-                            <td><a href="/Order/OrderTracking?ordID=${item.OrderID}" class="btn btn-warning btn-sm">Track Order</a></td>
+                            <td>${item.Ord_ID}</td>
+                            <td>${item.returningDate}</td>
+                            <td>${formatPrice(item.GrandTotal)}</td>
+                            <td class="${colorGrp}">${item.Status}</td>
+                            <td><a href="/Order/OrderTracking?ordID=${item.Ord_ID}" class="btn btn-warning btn-sm">Track Order</a></td>
                         </tr>`;
                 });
             }

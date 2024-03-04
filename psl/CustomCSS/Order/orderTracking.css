@@ -59,4 +59,8 @@
 .errText{
     display: none;
 }
+
+.seeMoreText{
+    cursor: pointer;
+}
 /* Tracking section ended */

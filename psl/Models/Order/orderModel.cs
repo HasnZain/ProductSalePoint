@@ -22,6 +22,7 @@ namespace psl.Models.Order
         public decimal ShippingCharges { get; set; }
         public string Method { get; set; }
         public string Status { get; set; }
+        public string returningDate { get; set; }
         public string ItemJSONDetails { get; set; }
 
         public List<orderItemsModel> ItemDetail { get; set; }

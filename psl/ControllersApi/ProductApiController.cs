@@ -9,7 +9,6 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web;
-using System.Data;
 using System.Web.Http;
 
 namespace psl.ControllersApi
@@ -89,12 +88,10 @@ namespace psl.ControllersApi
 
         // GET: GET Product Pictures on ProductID
         [HttpGet]
-        public DataTable GetProdPictures(int prodID)
+        public List<ProductPictures> GetProdPictures(int prodID)
         {
             productRepository repository = new productRepository();
-            DataTable table = new DataTable();
-            table = repository.GetProdPictures(prodID);
-            return table;
+            return repository.GetProdPictures(prodID);
         }
 
         // DELETE: Delete Product Image

@@ -227,6 +227,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminDashboard\dashboardModel.cs" />
     <Compile Include="Models\Categories\categoryModel.cs" />
     <Compile Include="Models\Categories\categoryPictures.cs" />
     <Compile Include="Models\DBHelper.cs" />
@@ -317,11 +318,11 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Manage\AddNewUsers.cshtml" />
+    <Content Include="Views\Manage\AddNewAdmins.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageUsers.cshtml" />
+    <Content Include="Views\Manage\ManageAdmins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\StockAdjustment.cshtml" />

@@ -15,7 +15,6 @@
 })
 
 const getAllData = () => {
-    console.log("All Data");
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var requestOptions = {
@@ -27,11 +26,11 @@ const getAllData = () => {
         .then(response => response.text())
         .then(result => {
             let data = JSON.parse(result);
-            console.log(typeof result)
-            $("#noOfAdmins").text(data[0].Admins);
-            $("#noOfUsers").text(data[0].Users);
-            $("#noOfCategories").text(data[0].Categories);
-            $("#noOfProducts").text(data[0].Products);
+
+            $("#noOfAdmins").text(data.adminsCount);
+            $("#noOfUsers").text(data.usersCount);
+            $("#noOfCategories").text(data.categoryCount);
+            $("#noOfProducts").text(data.productCount);
 
             $(".loading").hide();
             $(".initialDiv").hide();
@@ -44,7 +43,6 @@ const getAllData = () => {
 
 
 const getAllProducts = () => {
-    console.log("All Products");
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var requestOptions = {
@@ -94,7 +92,6 @@ const getAllProducts = () => {
 }
 
 const getAllCategories = () => {
-    console.log("All Category");
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var requestOptions = {
@@ -127,7 +124,6 @@ const getAllCategories = () => {
 
 
 const getOrdersPlaced = () => {
-    console.log("All Placed");
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var requestOptions = {
@@ -145,11 +141,11 @@ const getOrdersPlaced = () => {
                 str += `<tr>
                             <td>${(i + 1)}</td>
                             <td>${item.FullName}</td>
-                            <td>${item.InsertedDatetime}</td>
-                            <td>PKR ${item.Shipping_Charges}</td>
-                            <td>PKR ${formatPrice(item.Ord_Total)}</td>
-                            <td>${item.Payment_Method}</td>
-                            <td>${item.Ord_Status}</td>
+                            <td>${item.returningDate}</td>
+                            <td>PKR ${item.ShippingCharges}</td>
+                            <td>PKR ${formatPrice(item.GrandTotal)}</td>
+                            <td>${item.Method}</td>
+                            <td>${item.Status}</td>
                         </tr>`;
             });
             $("#ordersPlacedTBody").html(str);
@@ -162,7 +158,6 @@ const getOrdersPlaced = () => {
 
 
 const getOrdersInProgress = () => {
-    console.log("All In Progress");
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var requestOptions = {
@@ -180,11 +175,11 @@ const getOrdersInProgress = () => {
                 str += `<tr>
                             <td>${(i + 1)}</td>
                             <td>${item.FullName}</td>
-                            <td>${item.InsertedDatetime}</td>
-                            <td>PKR ${item.Shipping_Charges}</td>
-                            <td>PKR ${formatPrice(item.Ord_Total)}</td>
-                            <td>${item.Payment_Method}</td>
-                            <td>${item.Ord_Status}</td>
+                            <td>${item.returningDate}</td>
+                            <td>PKR ${item.ShippingCharges}</td>
+                            <td>PKR ${formatPrice(item.GrandTotal)}</td>
+                            <td>${item.Method}</td>
+                            <td>${item.Status}</td>
                         </tr>`;
             });
             $("#ordersInProgressTBody").html(str);
@@ -197,7 +192,6 @@ const getOrdersInProgress = () => {
 
 
 const getOrdersDispatched = () => {
-    console.log("All Dispatched");
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var requestOptions = {
@@ -215,11 +209,11 @@ const getOrdersDispatched = () => {
                 str += `<tr>
                             <td>${(i + 1)}</td>
                             <td>${item.FullName}</td>
-                            <td>${item.InsertedDatetime}</td>
-                            <td>PKR ${item.Shipping_Charges}</td>
-                            <td>PKR ${formatPrice(item.Ord_Total)}</td>
-                            <td>${item.Payment_Method}</td>
-                            <td>${item.Ord_Status}</td>
+                            <td>${item.returningDate}</td>
+                            <td>PKR ${item.ShippingCharges}</td>
+                            <td>PKR ${formatPrice(item.GrandTotal)}</td>
+                            <td>${item.Method}</td>
+                            <td>${item.Status}</td>
                         </tr>`;
             });
             $("#ordersDispatchedTBody").html(str);
@@ -232,7 +226,6 @@ const getOrdersDispatched = () => {
 
 
 const getOrdersDelivered = () => {
-    console.log("All Delivered");
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var requestOptions = {
@@ -250,11 +243,11 @@ const getOrdersDelivered = () => {
                 str += `<tr>
                             <td>${(i + 1)}</td>
                             <td>${item.FullName}</td>
-                            <td>${item.InsertedDatetime}</td>
-                            <td>PKR ${item.Shipping_Charges}</td>
-                            <td>PKR ${formatPrice(item.Ord_Total)}</td>
-                            <td>${item.Payment_Method}</td>
-                            <td>${item.Ord_Status}</td>
+                            <td>${item.returningDate}</td>
+                            <td>PKR ${item.ShippingCharges}</td>
+                            <td>PKR ${formatPrice(item.GrandTotal)}</td>
+                            <td>${item.Method}</td>
+                            <td>${item.Status}</td>
                         </tr>`;
             });
             $("#ordersDeliveredTBody").html(str);

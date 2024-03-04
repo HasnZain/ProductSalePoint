@@ -265,11 +265,11 @@ namespace psl.Repositories.ProductRepository
         #endregion
 
         #region Get Products Pictures
-        public DataTable GetProdPictures(int prodID)
+        public List<ProductPictures> GetProdPictures(int prodID)
         {
             DBHelper DB = new DBHelper();
-            DataTable table = new DataTable();
             DBResponse response = new DBResponse();
+            List<ProductPictures> prodPictures = new List<ProductPictures>();
             try
             {
                 response = DB.databaseCRUD("sp_GetProductPictures", new List<SqlParameter>()
@@ -278,13 +278,24 @@ namespace psl.Repositories.ProductRepository
                 });
                 if (response.Result)
                 {
-                    table = response.DataResult.Tables[0];
+                    if (response.DataResult.Tables[0].Rows.Count > 0)
+                    {
+                        foreach (DataRow row in response.DataResult.Tables[0].Rows)
+                        {
+                            ProductPictures model = new ProductPictures()
+                            {
+                                PictureID = Convert.ToInt32(row["PicID"]),
+                                PictureURL = Convert.ToString(row["URL"])
+                            };
+                            prodPictures.Add(model);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
             }
-            return table;
+            return prodPictures;
         }
         #endregion
 

@@ -277,7 +277,6 @@ const InsertUpdateData = async (endpiont, options) => {
             $("#alertBox").hide();
         }, 2000);
     } else {
-        console.log(response);
         $("#alertBox").addClass("alert-success");
         $("#alertBox").html(response.Message);
         $("#alertBox").show();
@@ -334,11 +333,12 @@ const getProductsImages = (prodID) => {
         .then(response => response.text())
         .then(result => {
             let data = JSON.parse(result);
+
             let Lst = "";
             imageCount = 0;
             $.each(data, function (i, item) {
                 imageCount = (i + 1);
-                Lst += `<div class="parentDiv parentDiv_${item.PicID}"><button type="button" class="btnRemove" onclick="deleteProdsPicturesModal(${item.PicID}, ${prodID})">&times;</button><img src="${item.URL}" class="previewImg" /></div>`;
+                Lst += `<div class="parentDiv parentDiv_${item.PictureID}"><button type="button" class="btnRemove" onclick="deleteProdsPicturesModal(${item.PictureID}, ${prodID})">&times;</button><img src="${item.PictureURL}" class="previewImg" /></div>`;
             });
 
             $("#divEditImgGroup").html(Lst);

@@ -1,6 +1,6 @@
 ﻿@model psl.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Add New Users";
+    ViewBag.Title = "Add New Admins";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-12 loginSection">
         <section id="loginForm">
-            @using (Html.BeginForm("AddNewUsers", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("AddNewAdmins", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
 

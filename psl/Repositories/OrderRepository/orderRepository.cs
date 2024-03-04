@@ -62,12 +62,11 @@ namespace psl.Repositories.OrderRepository
         #region Get All Orders Against A User
 
         [HttpGet]
-        [ValidateAntiForgeryToken]
-        public DataTable getAllUserOrders(string userID)
+        public List<orderModel> getAllUserOrders(string userID)
         {
             DBHelper DB = new DBHelper();
             DBResponse response = new DBResponse();
-            DataTable table = new DataTable();
+            List<orderModel> orders = new List<orderModel>();
             try
             {
                 response = DB.databaseCRUD("sp_GetUserOrders", new List<SqlParameter>()
@@ -76,14 +75,36 @@ namespace psl.Repositories.OrderRepository
                 });
                 if (response.Result)
                 {
-                    table = response.DataResult.Tables[0];
+                    if (response.DataResult.Tables[0].Rows.Count > 0)
+                    {
+                        foreach (DataRow row in response.DataResult.Tables[0].Rows)
+                        {
+                            orderModel model = new orderModel()
+                            {
+                                Ord_ID = Convert.ToInt32(row["OrderID"]),
+                                UserID = Convert.ToString(row["UserID"]),
+                                FullName = Convert.ToString(row["FullName"]),
+                                Country = Convert.ToString(row["Country"]),
+                                City = Convert.ToString(row["City"]),
+                                Address = Convert.ToString(row["Address"]),
+                                ZipCode = Convert.ToString(row["ZipCode"]),
+                                Email = Convert.ToString(row["Email"]),
+                                PhoneNo = Convert.ToString(row["PhoneNo"]),
+                                GrandTotal = Convert.ToDecimal(row["Ord_Total"]),
+                                ShippingCharges = Convert.ToDecimal(row["Shipping_Charges"]),
+                                Method = Convert.ToString(row["Payment_Method"]),
+                                Status = Convert.ToString(row["Ord_Status"]),
+                                returningDate = Convert.ToString(row["InsertedDatetime"])
+                            };
+                            orders.Add(model);
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                table.Rows[0][0] = ex.Message;
             }
-            return table;
+            return orders;
         }
 
         #endregion
@@ -91,12 +112,11 @@ namespace psl.Repositories.OrderRepository
         #region Get Order By ID
 
         [HttpGet]
-        [ValidateAntiForgeryToken]
-        public DataTable GetOrderByID(string userID, int OrderID)
+        public orderModel GetOrderByID(string userID, int OrderID)
         {
             DBHelper DB = new DBHelper();
             DBResponse response = new DBResponse();
-            DataTable table = new DataTable();
+            orderModel model = new orderModel();
             try
             {
                 response = DB.databaseCRUD("sp_GetUserOrdersbyID", new List<SqlParameter>()
@@ -106,14 +126,30 @@ namespace psl.Repositories.OrderRepository
                 });
                 if (response.Result)
                 {
-                    table = response.DataResult.Tables[0];
+                    if (response.DataResult.Tables[0].Rows.Count > 0)
+                    {
+                        DataRow row = response.DataResult.Tables[0].Rows[0];
+                        model.Ord_ID = Convert.ToInt32(row["OrderID"]);
+                        model.UserID = Convert.ToString(row["UserID"]);
+                        model.FullName = Convert.ToString(row["FullName"]);
+                        model.Country = Convert.ToString(row["Country"]);
+                        model.City = Convert.ToString(row["City"]);
+                        model.Address = Convert.ToString(row["Address"]);
+                        model.ZipCode = Convert.ToString(row["ZipCode"]);
+                        model.Email = Convert.ToString(row["Email"]);
+                        model.PhoneNo = Convert.ToString(row["PhoneNo"]);
+                        model.GrandTotal = Convert.ToDecimal(row["Ord_Total"]);
+                        model.ShippingCharges = Convert.ToDecimal(row["Shipping_Charges"]);
+                        model.Method = Convert.ToString(row["Payment_Method"]);
+                        model.Status = Convert.ToString(row["Ord_Status"]);
+                        model.returningDate = Convert.ToString(row["InsertedDatetime"]);
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                table.Rows[0][0] = ex.Message;
             }
-            return table;
+            return model;
         }
 
         #endregion
@@ -121,38 +157,59 @@ namespace psl.Repositories.OrderRepository
         #region Get All Orders For Admin
 
         [HttpGet]
-        [ValidateAntiForgeryToken]
-        public DataTable getAllOrders()
+        public List<orderModel> getAllOrders()
         {
             DBHelper DB = new DBHelper();
             DBResponse response = new DBResponse();
-            DataTable table = new DataTable();
+            List<orderModel> orders = new List<orderModel>();
             try
             {
                 response = DB.databaseCRUD("sp_GetAllOrders");
                 if (response.Result)
                 {
-                    table = response.DataResult.Tables[0];
+                    if (response.DataResult.Tables[0].Rows.Count > 0)
+                    {
+                        foreach (DataRow row in response.DataResult.Tables[0].Rows)
+                        {
+                            orderModel model = new orderModel()
+                            {
+                                Ord_ID = Convert.ToInt32(row["OrderID"]),
+                                UserID = Convert.ToString(row["UserID"]),
+                                FullName = Convert.ToString(row["FullName"]),
+                                Country = Convert.ToString(row["Country"]),
+                                City = Convert.ToString(row["City"]),
+                                Address = Convert.ToString(row["Address"]),
+                                ZipCode = Convert.ToString(row["ZipCode"]),
+                                Email = Convert.ToString(row["Email"]),
+                                PhoneNo = Convert.ToString(row["PhoneNo"]),
+                                GrandTotal = Convert.ToDecimal(row["Ord_Total"]),
+                                ShippingCharges = Convert.ToDecimal(row["Shipping_Charges"]),
+                                Method = Convert.ToString(row["Payment_Method"]),
+                                Status = Convert.ToString(row["Ord_Status"]),
+                                returningDate = Convert.ToString(row["InsertedDatetime"])
+                            };
+                            orders.Add(model);
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                table.Rows[0][0] = ex.Message;
+                
             }
-            return table;
+            return orders;
         }
 
         #endregion
 
-        #region Get All Orders For Admin
+        #region Get All Order Items For Admin
 
         [HttpGet]
-        [ValidateAntiForgeryToken]
-        public DataTable getOrderItemDetails(int orderID)
+        public List<orderItemsModel> getOrderItemDetails(int orderID)
         {
             DBHelper DB = new DBHelper();
             DBResponse response = new DBResponse();
-            DataTable table = new DataTable();
+            List<orderItemsModel> orderItems = new List<orderItemsModel>();
             try
             {
                 response = DB.databaseCRUD("sp_GetAllOrderItems", new List<SqlParameter>()
@@ -161,14 +218,32 @@ namespace psl.Repositories.OrderRepository
                 });
                 if (response.Result)
                 {
-                    table = response.DataResult.Tables[0];
+                    if (response.DataResult.Tables[0].Rows.Count > 0)
+                    {
+                        foreach (DataRow row in response.DataResult.Tables[0].Rows)
+                        {
+                            orderItemsModel model = new orderItemsModel()
+                            {
+                                itemID = Convert.ToInt32(row["ItemID"]),
+                                orderID = Convert.ToInt32(row["OrderID"]),
+                                productID = Convert.ToInt32(row["ProductID"]),
+                                productTitle = Convert.ToString(row["ProductTitle"]),
+                                productDesc = Convert.ToString(row["ProdDescription"]),
+                                categoryID = Convert.ToInt32(row["CategoryID"]),
+                                categoryTitle = Convert.ToString(row["CatTitle"]),
+                                productPrice = Convert.ToDecimal(row["ItemPrice"]),
+                                Quantity = Convert.ToInt32(row["ItemQty"]),
+                                itemTotal = Convert.ToDecimal(row["ItemTotal"])
+                            };
+                            orderItems.Add(model);
+                        }
+                    }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                table.Rows[0][0] = ex.Message;
             }
-            return table;
+            return orderItems;
         }
 
         #endregion

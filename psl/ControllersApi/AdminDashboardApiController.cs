@@ -6,6 +6,9 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Data;
 using psl.Repositories.AdminDashboardRepository;
+using psl.Models;
+using psl.Models.AdminDashboard;
+using psl.Models.Order;
 
 namespace psl.ControllersApi
 {
@@ -13,52 +16,43 @@ namespace psl.ControllersApi
     {
         // GET: GET ALL Products
         [HttpGet]
-        public DataTable getAllData()
+        public dashboardModel getAllData()
         {
-            DataTable table = new DataTable();
             adminDashboardRepository repository = new adminDashboardRepository();
-            table = repository.GetAllDashboardData();
-            return table;
+            return repository.GetAllDashboardData();
         }
 
         // GET: GET ALL Orders with status Placed
         [HttpGet]
-        public DataTable getOrdersPlaced()
+        public List<orderModel> getOrdersPlaced()
         {
-            DataTable table = new DataTable();
             adminDashboardRepository repository = new adminDashboardRepository();
-            table = repository.getOrdersPlaced();
-            return table;
+            return repository.getOrdersPlaced();
         }
 
         // GET: GET ALL Orders with status In Progress
         [HttpGet]
-        public DataTable getOrdersInProgress()
+        public List<orderModel> getOrdersInProgress()
         {
-            DataTable table = new DataTable();
             adminDashboardRepository repository = new adminDashboardRepository();
-            table = repository.getOrdersInProgress();
-            return table;
+            return repository.getOrdersInProgress();
         }
 
         // GET: GET ALL Orders with status Dispatched
         [HttpGet]
-        public DataTable getOrdersDispatched()
+        public List<orderModel> getOrdersDispatched()
         {
-            DataTable table = new DataTable();
             adminDashboardRepository repository = new adminDashboardRepository();
-            table = repository.getOrdersDispatched();
-            return table;
+            return repository.getOrdersDispatched();
         }
 
         // GET: GET ALL Orders with status Delivered
         [HttpGet]
-        public DataTable getOrdersDelivered()
+        public List<orderModel> getOrdersDelivered()
         {
-            DataTable table = new DataTable();
             adminDashboardRepository repository = new adminDashboardRepository();
-            table = repository.getOrdersDelivered();
-            return table;
+            return repository.getOrdersDelivered();
         }
+
     }
 }

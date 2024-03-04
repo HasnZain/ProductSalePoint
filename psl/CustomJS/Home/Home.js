@@ -181,13 +181,14 @@ const getProductsImages = (prodID) => {
         .then(response => response.text())
         .then(result => {
             let data = JSON.parse(result);
+
             let Lst = "";
             imageCount = 0;
             $.each(data, function (i, item) {
-                Lst += `<img src="${item.URL}" class="adsImgs dtlImg" id="Pic_${item.PicID}" onclick="showSelectedImg(this)" />`;
+                Lst += `<img src="${item.PictureURL}" class="adsImgs dtlImg" id="Pic_${item.PictureID}" onclick="showSelectedImg(this)" />`;
             });
             $("#divDetailsImg").html(Lst);
-            let firstImg = $("#Pic_" + data[0].PicID);
+            let firstImg = $("#Pic_" + data[0].PictureID);
             showSelectedImg(firstImg);
         })
         .catch(error => console.log('error', error));

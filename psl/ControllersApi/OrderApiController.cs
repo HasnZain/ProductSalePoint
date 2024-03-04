@@ -55,52 +55,44 @@ namespace psl.ControllersApi
 
         // GET: GET ALL Orders Against a User
         [HttpGet]
-        public DataTable getAllUserOrders()
+        public List<orderModel> getAllUserOrders()
         {
-            DataTable table = new DataTable();
             var userId = "";
             if (User.Identity.IsAuthenticated)
             {
                 userId = User.Identity.GetUserId();
             }
             orderRepository repository = new orderRepository();
-            table = repository.getAllUserOrders(userId);
-            return table;
+            return repository.getAllUserOrders(userId);
         }
 
         // GET: GET Order by ID
         [HttpGet]
-        public DataTable getOrdersByID(int orderID)
+        public orderModel getOrdersByID(int orderID)
         {
-            DataTable table = new DataTable();
             var userId = "";
             if (User.Identity.IsAuthenticated)
             {
                 userId = User.Identity.GetUserId();
             }
             orderRepository repository = new orderRepository();
-            table = repository.GetOrderByID(userId, orderID);
-            return table;
+            return repository.GetOrderByID(userId, orderID);
         }
 
         // GET: GET ALL Order Details Against Admin
         [HttpGet]
-        public DataTable getAllOrders()
+        public List<orderModel> getAllOrders()
         {
-            DataTable table = new DataTable();
             orderRepository repository = new orderRepository();
-            table = repository.getAllOrders();
-            return table;
+            return repository.getAllOrders();
         }
 
         // GET: GET Order Item Details by Order ID
         [HttpGet]
-        public DataTable getOrderItems(int orderID)
+        public List<orderItemsModel> getOrderItems(int orderID)
         {
-            DataTable table = new DataTable();
             orderRepository repository = new orderRepository();
-            table = repository.getOrderItemDetails(orderID);
-            return table;
+            return repository.getOrderItemDetails(orderID);
         }
 
         // POST: Update Order Status

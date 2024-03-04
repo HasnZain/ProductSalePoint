@@ -173,11 +173,11 @@ namespace psl.Controllers
 
         #endregion
 
-        #region Manage Users Profiles
+        #region Manage Admins Profiles
 
         //
-        // GET: /Manage/ManageUsers
-        public ActionResult ManageUsers()
+        // GET: /Manage/ManageAdmins
+        public ActionResult ManageAdmins()
         {
             var users = UserManager.Users.Where(x => x.Roles.Any(m => m.RoleId == "dd0a7dad-d98c-4ed3-80f8-293c9f92105e")).ToList();
             UserProfiles profiles = new UserProfiles();
@@ -198,10 +198,10 @@ namespace psl.Controllers
         }
 
         //
-        // POST: /Manage/ManageUsers
+        // POST: /Manage/ManageAdmins
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ManageUsers(ManageUserProfile model)
+        public async Task<ActionResult> ManageAdmins(ManageUserProfile model)
         {
             UserProfiles profiles = new UserProfiles();
 
@@ -238,18 +238,18 @@ namespace psl.Controllers
         #region Add new Admins
 
         //
-        // GET: /Manage/AddNewUsers
-        public ActionResult AddNewUsers()
+        // GET: /Manage/AddNewAdmins
+        public ActionResult AddNewAdmins()
         {
             return View();
         }
 
         //
-        // POST: /Manage/AddNewUsers
+        // POST: /Manage/AddNewAdmins
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddNewUsers(RegisterViewModel model)
+        public async Task<ActionResult> AddNewAdmins(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -258,7 +258,7 @@ namespace psl.Controllers
                 if (result.Succeeded)
                 {
                     await UserManager.AddToRoleAsync(user.Id, "Admin");
-                    return RedirectToAction("ManageUsers", "Manage");
+                    return RedirectToAction("ManageAdmins", "Manage");
                 }
                 AddErrors(result);
             }
