@@ -243,7 +243,6 @@ function priceRange() {
 }
 
 $(".filter__controls").on("click", ".filterLIS", function () {
-    debugger
     $(".filter__controls").children().find(".filterLIS").removeClass("active");
     $(this).addClass("active");
     let catID = $(".filter__controls").children().find(".active").data("filter");
@@ -253,7 +252,6 @@ $(".filter__controls").on("click", ".filterLIS", function () {
 });
 
 $("#btnFilter").click(function () {
-    debugger;
     let catID = $(".filter__controls").children().find(".active").data("filter");
     let priceFrom = $(".input-min").val();
     let priceTo = $(".input-max").val();

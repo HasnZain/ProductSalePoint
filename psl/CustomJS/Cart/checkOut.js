@@ -10,15 +10,31 @@ $(document).ready(function () {
     let products;
 
     if (dataFromLS !== undefined) {
-        products = JSON.parse(dataFromLS);
 
-        products.forEach(function (productString) {
-            let productObject = JSON.parse(productString);
-            let productId = productObject.ProductID;
-            let Quantity = productObject.Qty;
+        if (dataFromLS === "[]") {
+            $(".checkout__form").hide();
+            $("#alertBox").addClass("alert-danger");
+            $("#alertBox").html("Your Cart is Empty.");
+            $("#alertBox").show();
+        } else {
+            products = JSON.parse(dataFromLS);
+            if (products.length === 0) {
+                $(".checkout__form").hide();
+                $("#alertBox").addClass("alert-danger");
+                $("#alertBox").html("Your Cart is Empty.");
+                $("#alertBox").show();
+            } else {
 
-            getProductDetails(productId, Quantity)
-        });
+                products.forEach(function (productString) {
+                    let productObject = JSON.parse(productString);
+                    let productId = productObject.ProductID;
+                    let Quantity = productObject.Qty;
+
+                    getProductDetails(productId, Quantity)
+                });
+
+            }
+        }
     }
     else {
         $(".checkout__form").hide();
@@ -26,6 +42,28 @@ $(document).ready(function () {
         $("#alertBox").html("Your Cart is Empty.");
         $("#alertBox").show();
     }
+
+   
+
+
+    $('#cash-on-delivery, #easypaisa-jazzcash').change(function () {
+        var $this = $(this);
+        var $otherCheckbox = $('#cash-on-delivery, #easypaisa-jazzcash').not($this);
+
+        // If both checkboxes are unchecked or the one being clicked is already checked
+        if (!$this.is(":checked") || $otherCheckbox.is(":checked")) {
+            // Uncheck the other checkbox and check the one being clicked
+            $otherCheckbox.prop("checked", false);
+            $this.prop("checked", true);
+        } else {
+            // If the one being clicked is the only checked one, do nothing
+        }
+
+        // Output status for debugging
+        console.log($this.attr('id') + " is " + ($this.is(":checked") ? "checked" : "unchecked"));
+        console.log($otherCheckbox.attr('id') + " is " + ($otherCheckbox.is(":checked") ? "checked" : "unchecked"));
+    });
+
 
 });
 
@@ -144,15 +182,6 @@ function verifyData() {
     if (!$('#cash-on-delivery').is(":checked") && !$('#easypaisa-jazzcash').is(":checked")) {
         $("#errMethod").show();
         $("#errMethod").html("Payment Method not selected");
-        window.setTimeout(function () {
-            $("#errMethod").hide();
-        }, 2000);
-        return false;
-    }
-
-    if ($('#cash-on-delivery').is(":checked") && $('#easypaisa-jazzcash').is(":checked")) {
-        $("#errMethod").show();
-        $("#errMethod").html("Please select only one payment method");
         window.setTimeout(function () {
             $("#errMethod").hide();
         }, 2000);

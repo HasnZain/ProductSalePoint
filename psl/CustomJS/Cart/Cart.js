@@ -4,33 +4,40 @@ var grandTotalPrice = 0;
 var shippingCharges = 50;
 
 $(document).ready(function () {
-
     let dataFromLS = localStorage.products;
     let products;
-
     if (dataFromLS !== undefined) {
-        products = JSON.parse(dataFromLS);
+        if (dataFromLS === "[]") { // Check if it's an empty array as a string
+            let str = `<tr><td class="text-center" colspan="4"><h4 class="text-danger">Your cart is empty.</h4></td></tr>`;
+            $("#cartTable").append(str);
+        } else {
+            products = JSON.parse(dataFromLS);
+            if (products.length === 0) { // Check if it's an empty array after parsing
+                let str = `<tr><td class="text-center" colspan="4"><h4 class="text-danger">Your cart is empty.</h4></td></tr>`;
+                $("#cartTable").append(str);
+            } else {
+                let count = products.length;
+                let completed = 0;
 
-        let count = products.length;
-        let completed = 0;
+                products.forEach(function (productString) {
+                    let productObject = JSON.parse(productString);
+                    let productId = productObject.ProductID;
+                    let Quantity = productObject.Qty;
 
-        products.forEach(function (productString) {
-            let productObject = JSON.parse(productString);
-            let productId = productObject.ProductID;
-            let Quantity = productObject.Qty;
-
-            getProductDetails(productId, Quantity, function () {
-                completed++;
-                if (completed === count) {
-                    productQty(); 
-                }
-            });
-        });
-    }
-    else {
+                    getProductDetails(productId, Quantity, function () {
+                        completed++;
+                        if (completed === count) {
+                            productQty();
+                        }
+                    });
+                });
+            }
+        }
+    } else {
         let str = `<tr><td class="text-center" colspan="4"><h4 class="text-danger">Your cart is empty.</h4></td></tr>`;
         $("#cartTable").append(str);
     }
+
 
 });
 
@@ -115,26 +122,26 @@ function productQty() {
     });
 }
 
-
-
 function updateCart() {
-
     clearLocalStorage();
     let count = 0;
     let products = [];
+
     $('#cartTable tr').each(function () {
         let prodID = $(this).attr("rowID");
 
         let thirdColumnData = $(this).find('td:nth-child(3)');
         let prodCount = thirdColumnData.children().find("input").val();
 
-        let combinedValue = JSON.stringify({
-            ProductID: prodID,
-            Qty: prodCount
-        });
-
-        products.push(combinedValue);
-        count++;
+        // Check if the product count is greater than zero
+        if (prodCount > 0) {
+            let combinedValue = JSON.stringify({
+                ProductID: prodID,
+                Qty: prodCount
+            });
+            products.push(combinedValue);
+            count++;
+        }
     });
 
     // setting the product array
@@ -145,6 +152,7 @@ function updateCart() {
 
     location.reload();
 }
+
 
 function deleteRow(element) {
     $(element).parent().parent().remove();

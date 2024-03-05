@@ -1,0 +1,107 @@
+﻿
+.loginFormSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, .2), 0 10px 10px rgba(0, 0, 0, .2);
+    position: relative;
+    overflow: hidden;
+    width: 550px;
+    max-width: 100%;
+    padding: 15px 15px 30px 15px;
+}
+
+.form-container form {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
+.form-container input[type=text], .form-container input[type=password] {
+    background: #eee;
+    border: none;
+    padding: 12px 15px;
+    width: 450px;
+}
+
+.form-container input[type=checkbox] {
+    position:relative;
+    margin: 0;
+}
+
+.form-container input[type=submit] {
+    border-radius: 20px;
+    border: 1px solid #ff4b2b;
+    background: #ff445c;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+    .form-container input[type=submit]:active {
+        transform: scale(.95);
+    }
+
+
+.checkbox {
+    width: 450px;
+    display: flex;
+}
+
+.dvIcon {
+    background: #ff445c;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+.dvIcon svg{
+    color: #fff;
+    width: 50px;
+    height: 50px;
+}
+
+
+.orLogin {
+    color: #252525;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    transition: all 0.02s;
+}
+
+    .orLogin:before {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 2px;
+        width: 100%;
+        background: #9f9f9f;
+        content: "";
+    }
+
+    .orLogin:hover {
+        font-weight: 500;
+        color: #252525;
+    }

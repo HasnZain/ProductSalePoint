@@ -77,10 +77,10 @@ namespace psl.Models
 
     public class UserProfiles
     {
-        public List<ManageUserProfile> TamamAdmins { get; set; }
+        public List<ManageUserProfile> TotalAdmins { get; set; }
         public UserProfiles()
         {
-            TamamAdmins = new List<ManageUserProfile>();
+            TotalAdmins = new List<ManageUserProfile>();
         }
     }
 

@@ -255,10 +255,12 @@
     <Content Include="CustomCSS\Cart\Cart.css" />
     <Content Include="CustomCSS\Cart\checkOut.css" />
     <Content Include="CustomCSS\Home\Home.css" />
+    <Content Include="CustomCSS\Login\login.css" />
     <Content Include="CustomCSS\Order\orderHistory.css" />
     <Content Include="CustomCSS\Order\Orders.css" />
     <Content Include="CustomCSS\Order\orderTracking.css" />
     <Content Include="CustomCSS\Products\productPage.css" />
+    <Content Include="CustomCSS\Register\register.css" />
     <Content Include="CustomCSS\Shop\Shop.css" />
     <Content Include="CustomCSS\SideBar\sideBar.css" />
     <Content Include="CustomCSS\TopMenu\topMenu.css" />

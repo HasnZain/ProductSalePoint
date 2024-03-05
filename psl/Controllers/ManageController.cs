@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using psl.Models;
@@ -15,15 +16,18 @@ namespace psl.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private RoleManager<IdentityRole> _roleManager;
+        ApplicationDbContext context = new ApplicationDbContext();
 
         public ManageController()
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, RoleManager<IdentityRole> roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -179,7 +183,9 @@ namespace psl.Controllers
         // GET: /Manage/ManageAdmins
         public ActionResult ManageAdmins()
         {
-            var users = UserManager.Users.Where(x => x.Roles.Any(m => m.RoleId == "dd0a7dad-d98c-4ed3-80f8-293c9f92105e")).ToList();
+            _roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var roleChk = _roleManager.FindByName("Admin");
+            var users = UserManager.Users.Where(x => x.Roles.Any(m => m.RoleId == roleChk.Id)).ToList();
             UserProfiles profiles = new UserProfiles();
             foreach (var userinfo in users)
             {
@@ -191,7 +197,7 @@ namespace psl.Controllers
                     UserName = userinfo.UserName,
                     Email = userinfo.Email
                 };
-                profiles.TamamAdmins.Add(model);
+                profiles.TotalAdmins.Add(model);
             }
 
             return View(profiles);
@@ -214,7 +220,9 @@ namespace psl.Controllers
             var result = await UserManager.UpdateAsync(UserDtls);
             if (result.Succeeded)
             {
-                var users = UserManager.Users.Where(x => x.Roles.Any(m => m.RoleId == "dd0a7dad-d98c-4ed3-80f8-293c9f92105e")).ToList();
+                _roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+                var roleChk = _roleManager.FindByName("Admin");
+                var users = UserManager.Users.Where(x => x.Roles.Any(m => m.RoleId == roleChk.Id)).ToList();
                 foreach (var userinfo in users)
                 {
                     var model1 = new ManageUserProfile
@@ -225,7 +233,7 @@ namespace psl.Controllers
                         UserName = userinfo.UserName,
                         Email = userinfo.Email
                     };
-                    profiles.TamamAdmins.Add(model1);
+                    profiles.TotalAdmins.Add(model1);
                 }
                 return View(profiles);
             }

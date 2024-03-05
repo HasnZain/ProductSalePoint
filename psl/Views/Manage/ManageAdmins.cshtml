@@ -60,18 +60,18 @@
             </thead>
             <tbody>
                 @{
-                    if (Model.TamamAdmins.Count > 0)
+                    if (Model.TotalAdmins.Count > 0)
                     {
-                        for (var i = 0; i < Model.TamamAdmins.Count; i++)
+                        for (var i = 0; i < Model.TotalAdmins.Count; i++)
                         {
                             <tr>
                                 <td>@(i+1)</td>
-                                <td>@Model.TamamAdmins[i].FullName</td>
-                                <td>@Model.TamamAdmins[i].Email</td>
-                                <td>@Model.TamamAdmins[i].UserName</td>
-                                <td>@Model.TamamAdmins[i].PhoneNumber</td>
+                                <td>@Model.TotalAdmins[i].FullName</td>
+                                <td>@Model.TotalAdmins[i].Email</td>
+                                <td>@Model.TotalAdmins[i].UserName</td>
+                                <td>@Model.TotalAdmins[i].PhoneNumber</td>
                                 <td>
-                                    <button class="btn btn-sm btn-warning" onclick="FillData('@Model.TamamAdmins[i].userID', '@Model.TamamAdmins[i].FullName', '@Model.TamamAdmins[i].Email', '@Model.TamamAdmins[i].UserName', '@Model.TamamAdmins[i].PhoneNumber')">Edit</button>
+                                    <button class="btn btn-sm btn-warning" onclick="FillData('@Model.TotalAdmins[i].userID', '@Model.TotalAdmins[i].FullName', '@Model.TotalAdmins[i].Email', '@Model.TotalAdmins[i].UserName', '@Model.TotalAdmins[i].PhoneNumber')">Edit</button>
                                 </td>
                             </tr>
                         }
