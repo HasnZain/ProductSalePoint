@@ -1,0 +1,10 @@
+﻿
+.dvDateRangePicker
+{
+    display: flex;
+}
+
+
+#reportRange {
+    width: 220px;
+}

@@ -209,6 +209,7 @@
     <Compile Include="ControllersApi\CategoryApiController.cs" />
     <Compile Include="ControllersApi\OrderApiController.cs" />
     <Compile Include="ControllersApi\ProductApiController.cs" />
+    <Compile Include="ControllersApi\ReportingApiController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -217,6 +218,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ReportingController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -237,12 +239,14 @@
     <Compile Include="Models\Order\orderModel.cs" />
     <Compile Include="Models\Products\productModel.cs" />
     <Compile Include="Models\Products\ProductPictures.cs" />
+    <Compile Include="Models\Reports\reportModel.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AdminDashboardRepository\adminDashboardRepository.cs" />
     <Compile Include="Repositories\CategoryRepository\categoryRepository.cs" />
     <Compile Include="Repositories\OrderRepository\orderRepository.cs" />
     <Compile Include="Repositories\ProductRepository\productRepository.cs" />
+    <Compile Include="Repositories\ReportingRepository\reportingRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +254,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\DateRangePicker.css" />
     <Content Include="Content\loading.gif" />
     <Content Include="CustomCSS\AdminDashboard\adminDashboard.css" />
     <Content Include="CustomCSS\Cart\Cart.css" />
@@ -261,6 +266,7 @@
     <Content Include="CustomCSS\Order\orderTracking.css" />
     <Content Include="CustomCSS\Products\productPage.css" />
     <Content Include="CustomCSS\Register\register.css" />
+    <Content Include="CustomCSS\Reports\reports.css" />
     <Content Include="CustomCSS\Shop\Shop.css" />
     <Content Include="CustomCSS\SideBar\sideBar.css" />
     <Content Include="CustomCSS\TopMenu\topMenu.css" />
@@ -275,6 +281,7 @@
     <Content Include="CustomJS\Order\orderTracking.js" />
     <Content Include="CustomJS\Products\Product.js" />
     <Content Include="CustomJS\Products\StockAdjustment.js" />
+    <Content Include="CustomJS\Reports\reports.js" />
     <Content Include="CustomJS\Shop\Shop.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -283,6 +290,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\DateRangePicker.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -294,6 +302,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\mixitup.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -339,6 +349,7 @@
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\OrderHistory.cshtml" />
     <Content Include="Views\Order\OrderTracking.cshtml" />
+    <Content Include="Views\reporting\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

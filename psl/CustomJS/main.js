@@ -135,3 +135,73 @@ function validateEmail(email) {
     var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return pattern.test(email);
 }
+
+
+function getThisMonthFilter() {
+    var result = [];
+    var startDate = new Date();
+    var endDate = new Date();
+    if (startDate.getDate() > 25) {
+        startDate.setDate(26);
+    }
+    else {
+        startDate.setMonth(startDate.getMonth() - 1);
+        startDate.setDate(26);
+    }
+    if (startDate.getMonth() == 11) {
+        endDate.setMonth(0);
+        endDate.setFullYear(startDate.getFullYear() + 1);
+    }
+    else {
+        endDate.setMonth(startDate.getMonth() + 1);
+    }
+
+    endDate.setDate(25)
+
+    result[0] = startDate;
+    result[1] = new Date();
+    result[2] = endDate;
+
+    return result;
+}
+function getLastMonthFilter() {
+    var result = getThisMonthFilter();
+    var startDate = new Date(result[0]);
+    var endDate = new Date(result[2]);
+    startDate.setMonth(startDate.getMonth() - 1);
+    endDate.setMonth(endDate.getMonth() - 1);
+    endDate.setDate(25)
+    result[0] = startDate;
+    result[1] = endDate;
+    result[2] = endDate;
+    return result;
+}
+
+
+function dateRangePicker(id, defaultFilter) {
+    var thisMonthResult = getThisMonthFilter();
+    var lastMonthResult = getLastMonthFilter();
+    var defaultStartDate = thisMonthResult[0];
+    let defaultEndDate = thisMonthResult[1]
+    if (defaultFilter == 'Today') {
+        defaultStartDate = defaultEndDate = new Date()
+    }
+    $(id).daterangepicker({
+        locale: {
+            format: 'MMM DD YYYY'
+        },
+        Defaut: false,
+        useCurrent: false,
+        ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment(thisMonthResult[0]), moment(thisMonthResult[1])],
+            'Last Month': [moment(lastMonthResult[0]), moment(lastMonthResult[1])]
+        }
+    });
+
+    $(id).val(moment(defaultStartDate).format("MMM DD YYYY") + ' - ' + moment(defaultEndDate).format("MMM DD YYYY"));
+
+}

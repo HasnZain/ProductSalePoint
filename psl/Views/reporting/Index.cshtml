@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Reports";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/CustomCSS/Reports/reports.css" rel="stylesheet" />
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<h6 class="text-center">You can view all the reports from here. You can apply different filters for reporting.</h6>
+<hr />
+
+
+<div class="row">
+    <div class="col-md-12 dvDateRangePicker">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="ddCategories">Category Name</label>
+                <select class="form-control" id="ddCategories" name="ddCategories">
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="ddProducts">Product Name</label>
+                <select class="form-control" id="ddProducts" name="ddProducts">
+                    <option value="0">Select any product</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <div class="form-group">
+                <label for="catID">Date</label>
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1"><i class="fa-solid fa-calendar-days"></i></span>
+                    <input id="reportRange" value="" class="form-control pull-right" type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th>Sr#</th>
+                    <th>Order #</th>
+                    <th>Full Name</th>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody id="reportTBody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/CustomJS/Reports/reports.js"></script>
+}

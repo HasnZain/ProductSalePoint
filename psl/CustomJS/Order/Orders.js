@@ -355,7 +355,7 @@ const UpdateOrder = async (endpiont, options) => {
         window.setTimeout(function () {
             $("#alertBox").hide();
             $("#OrderModal").modal("hide");
-            getAllOrders();
+            location.reload();
         }, 2000);
     }
 };
